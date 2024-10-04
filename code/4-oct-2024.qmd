@@ -1,0 +1,66 @@
+---
+title: "4-oct-2024"
+format: html
+editor: visual
+---
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+```
+
+reading in data
+
+```{r}
+drugs<-read.csv(here("data","drug_resistance.csv"))
+
+glimpse(drugs)
+```
+
+```{r}
+drugs$Treatment<-as.factor(drugs$Treatment)
+levels(drugs$Treatment)
+```
+
+Fix the treatment variable now
+
+Find the rows that have any version of "control"
+
+Use "which"
+
+```{r}
+fix<-which(drugs$Treatment %in% c("cantrol","control","Control")) #identified rows that need repair
+
+drugs$Treatment[fix]<-"control"
+levels(drugs$Treatment)
+drugs$Treatment<-factor(drugs$Treatment) #just tells R to relist levels of factor now that they have changed
+levels(drugs$Treatment)
+```
+
+Fixing the rest of Treatment
+
+```{r}
+fix2<-which(drugs$Treatment %in% c("drug x 2","drug2","Drugx2"))
+fix3<-which(drugs$Treatment %in% c("drug x 3","Drug x 3", "drug3"))
+drugs$Treatment[fix2]<-"drug2"
+drugs$Treatment[fix3]<-"drug3"
+drugs$Treatment<-factor(drugs$Treatment)
+levels(drugs$Treatment)
+```
+
+fixing tech name
+
+```{r}
+drugs$tech.name<-as.factor(drugs$tech.name)
+levels(drugs$tech.name)
+```
+
+```{r}
+fix4<-which(drugs$tech.name %in% c("becca","Becca"))
+fix5<-which(drugs$tech.name %in% c("brain","brian","Brian"))
+drugs$tech.name[fix4]<-"Becca"
+drugs$tech.name[fix5]<-"Brian"
+drugs$tech.name<-factor(drugs$tech.name)
+levels(drugs$tech.name)
+```

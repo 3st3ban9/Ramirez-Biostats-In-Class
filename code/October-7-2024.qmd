@@ -26,3 +26,23 @@ tomato$Treatment[fix2]<- "fertilizer"
 tomato$Treatment<-factor(tomato$Treatment)
 levels(tomato$Treatment)
 ```
+
+```{r}
+test<- c(2,4,6,8,10,12,14,16,18,20)
+summary(test)
+```
+
+Exercise 3:
+
+```{r}
+grades<-c(90,94,96,90,84,86)
+summary(grades)
+```
+
+quantile:
+
+```{r}
+quantile(grades,probs=c(0,.25,.5,.75,1))
+```
+
+Exercise 4:

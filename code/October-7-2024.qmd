@@ -1,0 +1,28 @@
+---
+title: "October-7-2024"
+format: html
+editor: visual
+---
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+```
+
+reading in data:
+
+```{r}
+tomato<-read.csv(here("data","tomato_data.csv"))
+levels(tomato$Treatment)
+```
+
+```{r}
+tomato$Treatment<-as.factor(tomato$Treatment) 
+fix<-which(tomato$Treatment == "Control")
+tomato$Treatment[fix]<- "control" 
+fix2<-which(tomato$Treatment== "Fertilizer")
+tomato$Treatment[fix2]<- "fertilizer" 
+tomato$Treatment<-factor(tomato$Treatment)
+levels(tomato$Treatment)
+```

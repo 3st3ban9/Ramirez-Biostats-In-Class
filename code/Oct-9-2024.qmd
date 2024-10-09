@@ -1,0 +1,45 @@
+---
+title: "Oct-9-2024"
+format: html
+editor: visual
+---
+
+```{r}
+rm(list=ls())
+library(here)
+library(tidyverse)
+```
+
+read tomato:
+
+```{r}
+tomato<-read.csv(here("data","tomato_data.csv"))
+```
+
+Get rows 3,7,9
+
+```{r}
+tomato|>slice(c(3,7,9))|> View()
+```
+
+all plants with fertilizer treatment and avg wt \>=145:
+
+```{r}
+tomato|>filter(Treatment=="fertilizer"&Avg_tomato_weight_g>=145)
+```
+
+save changes to a new file
+
+```{r}
+dir.create(here("outputs"))
+```
+
+now save the file
+
+```{r}
+write.csv(tomato,here("outputs","fixedtomatoes.csv"),row.names = F)#row.names=F prevents R from adding the X column
+```
+
+```{r}
+toms2<-read.csv(here("outputs","fixedtomatoes.csv"))
+```
